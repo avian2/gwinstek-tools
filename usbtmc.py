@@ -1,12 +1,18 @@
 import os
 
-class usbtmc:
+class USBTMCError(Exception):
+	def __init__(self, errno):
+		Exception.__init__(self, "Error %d" % (errno,))
+
+class USBTMC:
 	def __init__(self, device):
 		self.device = device
 		self.f = os.open(device, os.O_RDWR)
+		self.write("*CLS")
 
 	def write(self, command):
-		os.write(self.f, command + "\n");
+		os.write(self.f, command)
+		os.write(self.f, "\n")
 
 	def read(self, length=4000):
 		return os.read(self.f, length)
@@ -15,8 +21,15 @@ class usbtmc:
 		self.write(command)
 		return self.read(length)
 
+	def command(self, command):
+		self.write(command)
+
+		error = self.query("SYSTEM:ERROR?")
+		if error != "No Error\r\n":
+			raise USBTMCError(int(error))
+
 	def get_name(self):
-		return self.query("*IDN?\n")
+		return self.query("*IDN?")
 
 	def send_reset(self):
 		self.write("*RST")
