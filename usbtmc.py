@@ -1,8 +1,9 @@
 import os
 
 class USBTMCError(Exception):
-	def __init__(self, errno):
-		Exception.__init__(self, "Error %d" % (errno,))
+	def __init__(self, command, errno):
+		Exception.__init__(self, "Command '%s' caused error %d" % (
+			command[:100], errno))
 
 class USBTMC:
 	def __init__(self, device):
@@ -26,7 +27,7 @@ class USBTMC:
 
 		error = self.query("SYSTEM:ERROR?")
 		if error != "No Error\r\n":
-			raise USBTMCError(int(error))
+			raise USBTMCError(command, int(error))
 
 	def get_name(self):
 		return self.query("*IDN?")
