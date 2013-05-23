@@ -1,5 +1,5 @@
 from fractions import gcd
-from afg import AFG2000
+from gwinstek.afg import AFG2000
 import numpy
 
 def generate_waveform(f1, f2, n=4096):
