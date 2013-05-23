@@ -1,5 +1,5 @@
 from fractions import gcd
-from afg import AFG
+from afg import AFG2000
 import numpy
 
 def generate_waveform(f1, f2, n=4096):
@@ -21,7 +21,7 @@ def generate_waveform(f1, f2, n=4096):
 	return fo, w
 
 def main():
-	afg = AFG("/dev/ttyACM0")
+	afg = AFG2000("/dev/ttyACM0")
 
 	fo, w = generate_waveform(700, 1900)
 

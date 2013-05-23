@@ -1,6 +1,6 @@
 from usbtmc import USBTMC
 
-class AFG(USBTMC):
+class AFG2000(USBTMC):
 	NMAX = 4096
 
 	R = 511
