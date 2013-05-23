@@ -13,5 +13,5 @@ class AFG2000(USBTMC):
 		data *= self.R
 		vec = ','.join("%.0f" % i for i in data)
 
-		self.command("data:dac VOLATILE,0,%s" % (vec,))
-		self.command("source1:freq %f" % (fo,))
+		self.command("DATA:DAC VOLATILE,0,%s" % (vec,))
+		self.command("SOURCE1:FREQ %f" % (fo,))
