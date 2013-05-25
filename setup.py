@@ -2,9 +2,9 @@
 
 from distutils.core import setup
 
-setup(name='GW Instek tools',
+setup(name='gwinstek-tools',
 	version='0.1',
-	description='Python modules for controlling GW Instek instruments over USB',
+	description='Remote control for controlling GW Instek instruments.',
 	license='GPL',
 	long_description=open("README").read(),
 	author='Tomaz Solc',
@@ -15,9 +15,9 @@ setup(name='GW Instek tools',
 	provides = [ 'gwinstek' ],
 
 	classifiers = [
-		"License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)",
+		"License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
 		"Programming Language :: Python",
 		"Programming Language :: Python :: 2",
-		"Programming Language :: Python :: 3",
+		"Topic :: Scientific/Engineering",
 	],
 )
