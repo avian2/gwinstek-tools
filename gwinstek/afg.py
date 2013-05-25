@@ -10,7 +10,7 @@ class AFG2000(USBTMC):
 
 		Output function is switched to ARB.
 
-		sampling rate = fo / len(data)
+		sampling rate = fo * len(data)
 
 		fo -- repetition frequency of the waveform in hertz.
 		data -- sequence of data points for the waveform between -1.0
