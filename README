@@ -21,6 +21,18 @@ To install run::
     python setup.py install
 
 
+Known problems
+--------------
+
+Setting a positive DC offset with "SOURCE1:DCOFFSET n" with output enabled and
+ARB sometimes inverts signal (e.g. 1 becomes the lowest voltage and -1 becomes
+the highest). This can be fixed by setting the offset back to zero manually on
+the front panel. It's best to avoid setting offset through USB.
+
+Regardless of what the manual says, "SOURCE1:OUTPUT ON" is the correct command
+to enable the output.
+
+
 Copyright
 ---------
 
