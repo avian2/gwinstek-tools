@@ -1,4 +1,5 @@
 import os
+import termios
 
 class USBTMCError(Exception):
 	def __init__(self, command, errno):
@@ -9,6 +10,13 @@ class USBTMC:
 	def __init__(self, device):
 		self.device = device
 		self.f = os.open(device, os.O_RDWR)
+
+		a = termios.tcgetattr(self.f)
+		a[0] &= ~termios.INLCR
+		a[0] &= ~termios.ICRNL
+		a[3] &= ~termios.ECHO
+		termios.tcsetattr(self.f, termios.TCSANOW, a)
+
 		self.write("*CLS")
 
 	def write(self, command):
