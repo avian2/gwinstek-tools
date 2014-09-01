@@ -20,8 +20,7 @@ class AFG2000(USBTMC):
 		assert max(data) <= 1.0
 		assert min(data) >= -1.0
 
-		data *= self.R
-		vec = ','.join("%.0f" % i for i in data)
+		vec = ','.join("%.0f" % (i*self.R) for i in data)
 
 		self.command("DATA:DAC VOLATILE,0,%s" % (vec,))
 		self.command("SOURCE1:FREQ %.1f" % (fo,))
