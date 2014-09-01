@@ -1,5 +1,8 @@
+import logging
 import os
 import termios
+
+log = logging.getLogger(__name__)
 
 class USBTMCError(Exception):
 	def __init__(self, command, errno):
@@ -20,11 +23,14 @@ class USBTMC:
 		self.write("*CLS")
 
 	def write(self, command):
-		os.write(self.f, command)
-		os.write(self.f, "\n")
+		s = command + '\n'
+		log.debug("write %s: %r" % (self.device, s))
+		os.write(self.f, s)
 
 	def read(self, length=4000):
-		return os.read(self.f, length)
+		r = os.read(self.f, length)
+		log.debug("read  %s: %r" % (self.device, r))
+		return r
 
 	def query(self, command, length=300):
 		self.write(command)
