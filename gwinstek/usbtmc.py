@@ -25,12 +25,12 @@ class USBTMC:
 	def write(self, command):
 		s = command + '\n'
 		log.debug("write %s: %r" % (self.device, s))
-		os.write(self.f, s)
+		os.write(self.f, s.encode('ascii'))
 
 	def read(self, length=4000):
 		r = os.read(self.f, length)
 		log.debug("read  %s: %r" % (self.device, r))
-		return r
+		return r.decode('ascii')
 
 	def query(self, command, length=300):
 		self.write(command)

@@ -1,4 +1,4 @@
-from usbtmc import USBTMC
+from gwinstek.usbtmc import USBTMC
 
 class AFG2000(USBTMC):
 	NMAX = 4096
